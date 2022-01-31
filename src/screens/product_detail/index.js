@@ -1,5 +1,4 @@
 import {
-  Button,
   SafeAreaView,
   Text,
   View
@@ -8,17 +7,18 @@ import {
 import React from 'react';
 import styles from './style';
 
-const ProductDetail= ({navigation}) => {
-    
-    return (
-      <SafeAreaView style={styles.container}>
-        <View style={styles.container}>
-          <Text>Product detail</Text>
-          <Button title="Go back to categories" onPress={() => navigation.navigate('Categories')}></Button>
-        </View>
-      </SafeAreaView>
-    );
-  };
-  
-  export default ProductDetail;
-  
+const ProductDetail = ({navigation, route}) => {
+  const { item } = route.params
+  return (
+    <SafeAreaView style={styles.container}>
+      <View style={styles.container}>
+        <Text>{item.name}</Text>
+        <Text>{item.description}</Text>
+        <Text>{item.weight}</Text>
+        <Text>$ {item.price}</Text>
+      </View>
+    </SafeAreaView>
+  );
+};
+
+export default ProductDetail;
