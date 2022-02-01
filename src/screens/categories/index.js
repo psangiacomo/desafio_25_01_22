@@ -29,7 +29,7 @@ const Categories= ({navigation}) => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <View style={styles.container}>
+      <View>
         <FlatList
           data={CATEGORIES}
           renderItem={renderCategory}

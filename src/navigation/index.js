@@ -1,59 +1,42 @@
-import {COLORS} from '../utils/constants/colors';
-import Categories from "../screens/categories";
-import { NavigationContainer } from "@react-navigation/native";
-import { Platform } from "react-native";
-import ProductDetail from "../screens/product_detail";
-import Products from "../screens/products";
-import React from "react";
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { COLORS } from '../utils/constants/colors';
+import CartStackNavigation from './cart';
+import Ionicons from 'react-native-vector-icons/Ionicons';
+import { NavigationContainer } from '@react-navigation/native';
+import React from 'react';
+import ShopStackNavigation from './shop';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
-const Stack = createNativeStackNavigator();
+const BottomTabs = createBottomTabNavigator();
 
-const AppNavigation = () =>{
+const AppNavigation = () => {
     return (
-
-        <NavigationContainer>
-            <Stack.Navigator 
-                initialRouteName="Categories"
-                screenOptions={{
-                    headerStyle: {
-                        backgroundColor: Platform.OS === 'android' ? COLORS.primary : '',
-                    },
-                    headerTintColor: Platform.OS === 'android' ? 'white' : COLORS.primary,
-                    headerTitleStyle: {
-                        fontWeight: 'bold'
-                    }
-                }}
-            >
-                <Stack.Screen 
-                    name="Categories"
-                    component={Categories}
+        <NavigationContainer >
+            <BottomTabs.Navigator initialRouteName='Shop' screenOptions={{
+                    headerShown: false,
+                    tabBarActiveTintColor: COLORS.primary,
+                    tabBarInactiveTintColor: COLORS.darkGrey,
+                }}>
+                <BottomTabs.Screen
+                    name='Shop'
+                    component={ShopStackNavigation} 
+                    options={{
+                        tabBarIcon: ({ focused }) => (
+                            <Ionicons name='home-outline' size={20} color={focused ? COLORS.primary : COLORS.darkGrey} />
+                        )          
+                    }}
                 />
-                <Stack.Screen 
-                    name="Products" 
-                    component={Products}
-                    options={({ route }) => ({
-                        title: route.params.name,
-                        headerStyle: {
-                            backgroundColor: route.params.color
-                        },
-                    })}
+                <BottomTabs.Screen
+                    name='Cart'
+                    component={CartStackNavigation}
+                    options={{
+                        tabBarIcon: ({ focused }) => (
+                            <Ionicons name='cart-outline' size={20} color={focused ? COLORS.primary : COLORS.darkGrey}/>
+                        )
+                    }} 
                 />
-                <Stack.Screen 
-                    name="ProductDetail"
-                    component={ProductDetail}
-                    options={({ route }) => ({
-                        title: route.params.name,
-                        headerStyle: {
-                            backgroundColor: route.params.color
-                        },
-                    })}
-                />
-            </Stack.Navigator>
+            </BottomTabs.Navigator>
         </NavigationContainer>
-
     )
-
 }
 
 export default AppNavigation;

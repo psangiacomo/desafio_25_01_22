@@ -11,7 +11,7 @@ const ProductDetail = ({navigation, route}) => {
   const { item } = route.params
   return (
     <SafeAreaView style={styles.container}>
-      <View style={styles.container}>
+      <View>
         <Text>{item.name}</Text>
         <Text>{item.description}</Text>
         <Text>{item.weight}</Text>

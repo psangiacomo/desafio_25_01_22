@@ -5,6 +5,10 @@ const styles = StyleSheet.create({
       flex: 1,
       justifyContent: 'center',
       alignItems: 'center',
+      flexWrap: 'wrap',
+      alignItems: 'flex-start',
+      padding: 45,
+      fontSize: 55,
     }
   });
   
