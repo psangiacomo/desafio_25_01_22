@@ -1,14 +1,12 @@
-import {
-  SafeAreaView,
-  Text,
-  View
-} from 'react-native';
+import {SafeAreaView, Text, View} from 'react-native';
 
 import React from 'react';
 import styles from './style';
+import {useSelector} from 'react-redux';
 
 const ProductDetail = ({navigation, route}) => {
-  const { item } = route.params
+  const item = useSelector(state => state.breads.selected);
+
   return (
     <SafeAreaView style={styles.container}>
       <View>
